@@ -19,10 +19,11 @@
 
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="thesis/css/cy-style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.20.0/cytoscape.min.js"></script>
 </head>
 
-<body id="page-top">
+<body id="page-top" onload="exec_all()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -32,8 +33,8 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                
-                <div class="sidebar-brand-text mx-3">Data Lineage Viewer</div>
+                <div class="sidebar-brand-icon" >DLW</div>
+                <div class="sidebar-brand-text mx-3 collapsed">Data Lineage Viewer</div>
             </a>
 
             <!-- Divider -->
@@ -155,76 +156,18 @@
             <!-- Main Content -->
             <div id="content">
 
-                <!-- Topbar -->
-                <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-
-                    <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-                                aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Search for..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                  
-
-                    </ul>
-
-                </nav>
-                <!-- End of Topbar -->
-
+               
+               
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Data Lineage Viewer</h1>
-                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" id="mastro-connection"><i
-                                class="fas fa-exclamation-circle fa-sm text-white-50"  ></i> Connect to Mastro </a>
-                    </div>
+                    
 
                     
                     <!-- Content Row -->
 
-                    <div class="row">
+                    <div class="row mt-2">
 
                         <!-- Area Chart -->
                         <div class="col-xl-12 col-lg-7">
@@ -232,7 +175,9 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Data flow</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary mr-auto">Data Lineage Viewer</h6>
+                                    <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm mr-3" id="cyto-btn"><i
+                                        class="fas fa-exclamation-circle fa-sm text-white-50"  ></i> Connect to Mastro </a>
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -252,65 +197,59 @@
                                 <div class="card-body">
                                     <div class="row">
 
-                                        <div class="col-xl-3 col-md-4 mb-4">
-                                            <div class="card border-left-primary shadow h-100 py-0">
+                                        <div class="col-xl-3 col-md-4 mb-3">
+                                            <div class="card border-left-danger shadow">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                                Sources</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">#Number of sources</div>
-                                                        </div>
+                                                        
+                                                            <div class="h5 font-weight-bold text-danger text-uppercase mr-3" >
+                                                                Datasources</div>
+                                                            <div class="h4 font-weight-bold text-gray-800" id="numero-ds">#</div>
+                                                        
                                                         
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-3 col-md-4 mb-4">
-                                            <div class="card border-left-success shadow h-100 py-0">
+                                        <div class="col-xl-3 col-md-4 mb-3">
+                                            <div class="card border-left-success shadow">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                                                Low Level Mappings</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">#</div>
-                                                        </div>
+                                                        
+                                                            <div class="h5 font-weight-bold text-success text-uppercase mr-3">
+                                                                Tables</div>
+                                                            <div class="h4 font-weight-bold text-gray-800" id="numero-tb">#</div>
+                                                        
                                                         
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-3 col-md-4 mb-4">
-                                            <div class="card border-left-info shadow h-100 py-0">
+                                        <div class="col-xl-3 col-md-4 mb-3">
+                                            <div class="card border-left-primary shadow">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1"> High Level Mapping
-                                                            </div>
-                                                            <div class="row no-gutters align-items-center">
-                                                                <div class="col-auto">
-                                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">#</div>
-                                                                </div>
-                                                                
-                                                            </div>
-                                                        </div>
+                                                        
+                                                            <div class="h5 font-weight-bold text-primary text-uppercase mr-3" >
+                                                                SQL VIEWS </div>
+                                                            <div class="h4 font-weight-bold text-gray-800 " id="numero-vw">#</div>
+                                                        
                                                         
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div class="col-xl-3 col-md-4 mb-4">
-                                            <div class="card border-left-warning shadow h-100 py-0">
+                                        <div class="col-xl-3 col-md-4 mb-3">
+                                            <div class="card border-left-warning shadow">
                                                 <div class="card-body">
                                                     <div class="row no-gutters align-items-center">
-                                                        <div class="col mr-2">
-                                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                                Onthology Entities</div>
-                                                            <div class="h5 mb-0 font-weight-bold text-gray-800">#</div>
-                                                        </div>
+                                                        
+                                                            <div class="h5 font-weight-bold text-warning text-uppercase mr-3" >
+                                                                ENTITIES</div>
+                                                            <div class="h4 font-weight-bold text-gray-800" id="numero-en">#</div>
                                                         
                                                         
                                                     </div>
@@ -320,12 +259,18 @@
 
                                     
                                         </div>
-                                    
-                                    <div class="chart-area">
-                                        <canvas id="dataLineageArea"></canvas>
+
+                                    <div class="row">
+                                        <div class="chart-area" style="height: 600px;width: 1800px; ">
+                                            <div id="cy"></div>
+                                        </div>
+
                                     </div>
+                                    
+                                    
                                 </div>
                             </div>
+                            
                         </div>
 
                         <!-- Pie Chart -->
@@ -588,7 +533,15 @@
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
 
-    <script src="js/general.js"></script>
+   
+
+
+    <!-- roba mia -->
+
+    <script src = "thesis/js/nodes.js"></script>
+    <script src="thesis/js/data.js"></script>
+    <script src = "thesis/js/prework.js"></script>
+    <script src ="thesis/js/dtlineage.js"></script>
 
 </body>
 
