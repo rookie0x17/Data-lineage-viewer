@@ -5,8 +5,9 @@ class Nodes{
 }
 
 class Datasource extends Nodes {
-    constructor(id ){
+    constructor(id){
         super(id);
+        
         
     }
 }
@@ -19,17 +20,28 @@ class Table extends Nodes {
 }
 
 class View extends Nodes {
-    constructor(id ){
+    constructor(id , columns){
         super(id );
+        this.columns = columns;
     }
 }
 
 class Entity extends Nodes {
-    constructor(id , name , type ){
+    constructor(id , name , type , template){
         super(id);
         this.name = name
         this.type = type
+        this.template = template
 
+    }
+}
+
+class Relation extends Nodes {
+    constructor(id , name , type , iri){
+        super(id);
+        this.name = name
+        this.type = type
+        this.iri = iri
     }
 }
 
@@ -54,6 +66,13 @@ class Edge_tb_vw extends Edge {
 }
 
 class Edge_vw_en extends Edge {
+    constructor(id , from , to ){
+        super(id, from , to)
+        
+    }
+}
+
+class Edge_en_re extends Edge {
     constructor(id , from , to ){
         super(id, from , to)
         

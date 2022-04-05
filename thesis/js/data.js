@@ -50,7 +50,7 @@ function get_datasources(){
     xhr.onload = () => {
         datasources_json = JSON.parse(xhr.response)
         datasources_json.forEach(datasource => {
-            datasources.push(datasource.id)
+            datasources.push(datasource.id )
         });
         get_datasource_tables();
     };
@@ -105,13 +105,13 @@ function get_views() {
         views_json.sqlViews.forEach(vista => {
             views_id.push(vista.sqlViewID)
         })
-        get_views_spec()
+        get_assertion()
     };
 
     xhr.send();
     
 }
-
+/*
 function get_views_spec() {
 
     views_id.forEach(vista => {    
@@ -121,7 +121,7 @@ function get_views_spec() {
         xhr.setRequestHeader("X-MONOLITH-SESSION-ID",  token);
 
         xhr.onload = () => {
-            views_spec.push(JSON.parse(xhr.response))
+            //views_spec.push(JSON.parse(xhr.response))
             
         };
 
@@ -131,7 +131,7 @@ function get_views_spec() {
 
     
 }
-
+*/
 function get_assertion() {
 
       
@@ -160,6 +160,7 @@ function get_ontology_json() {
 
     xhr.onload = () => {
         ontology_json = JSON.parse(xhr.response)
+        get_classes()
         estraiDati()
     };
 
@@ -167,4 +168,16 @@ function get_ontology_json() {
     
 }
 
+function get_classes(){
+    const xhr = new XMLHttpRequest();
 
+    xhr.open('GET', "http://localhost:8989/mws/rest/mwsx/owlOntology/"+ontology+"/version/alphabet/class/CL_3/logical?version="+version)
+    xhr.setRequestHeader("X-MONOLITH-SESSION-ID",  token);
+
+    xhr.onload = () => {
+        class_json = JSON.parse(xhr.response);
+        console.log(class_json);
+    };
+
+    xhr.send();
+}

@@ -16,14 +16,36 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
+      
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
+
+    <link href="thesis/elk/dist/jquery.qtip.min.css" rel="stylesheet">
     <link rel="stylesheet" href="thesis/css/cy-style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.20.0/cytoscape.min.js"></script>
+    
+    
+    
 </head>
 
 <body id="page-top" onload="exec_all()">
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cytoscape/3.20.0/cytoscape.min.js"></script>
+    <script src="https://cdn.rawgit.com/cpettitt/dagre/v0.7.4/dist/dagre.min.js"></script>
+	<script src="https://cdn.rawgit.com/cytoscape/cytoscape.js-dagre/1.5.0/cytoscape-dagre.js"></script>
+    <script src="https://unpkg.com/bluebird@3.5.1/js/browser/bluebird.js"></script>
+	<script src="https://unpkg.com/whatwg-fetch@2.0.3/fetch.js"></script>
+    <script src="https://unpkg.com/klayjs@0.4.1/klay.js"></script>
+	<script src="thesis/elk/dist/cytoscape-klay.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/elkjs@0.7.0/lib/elk.bundled.js"></script>
+    <script src="thesis/elk/dist/cytoscape-elk.js"></script>
+    <script type="text/javascript" src="thesis/elk/dist/jquery-3.6.0.js"></script>
+    <script src="thesis/elk/dist/jquery.qtip.min.js"></script>
+    <script  src="thesis/elk/dist/cytoscape-qtip.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="thesis/elk/dist/cytoscape-popper.js"></script>
+
+    <script src="https://unpkg.com/tippy.js@6"></script>
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -261,7 +283,7 @@
                                         </div>
 
                                     <div class="row">
-                                        <div class="chart-area" style="height: 600px;width: 1800px; ">
+                                        <div class="chart-area" style="height: 800px;width: 1800px; ">
                                             <div id="cy"></div>
                                         </div>
 
